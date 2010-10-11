@@ -69,18 +69,26 @@ if (typeof(safari) != "undefined") {
 script.type = "text/javascript";
 script.text = "{\n\
 function requestInstagram(path) {\n\
-var evt = document.createEvent(\"CustomEvent\");\n\
-evt.initCustomEvent(\"twttr.media.types.instagram\",false,false,path);\n\
-document.dispatchEvent(evt);\n\
+	var evt = document.createEvent(\"CustomEvent\");\n\
+	evt.initCustomEvent(\"twttr.media.types.instagram\",false,false,path);\n\
+	document.dispatchEvent(evt);\n\
 }\n\
-var a = function(){\n\
-if(window.twttr.mediaType && typeof(twttr.comGitHubNorioNomura) == \"undefined\"){\n\
-twttr.comGitHubNorioNomura = 1;\n\
-window.twttr.mediaType(\"twttr.media.types.instagram\").matcher(/\\b(?:http\\:\\/\\/)?instagr.am\\/(.*)$/g).icon(\"photo\").favicon(\"http://instagr.am/static/images/logoCamera.png\").url(\"http://instagr.am\").process(function(B,A){this.data.path=B;A()}).methods({html:function(A){requestInstagram(this.data.path);var B='<a id=\"{path}\" class=\"instagram\" href=\"http://instagr.am/{path}\" target=\"_blank\"></a>';A(twttr.supplant(B,this.data))}});\n\
-delete twttr.comGitHubNorioNomura;\n\
-delete a;\n\
-}else{setTimeout(a,100);}\n\
-};a();}";
+var dispatchTimeoutEvent = function() {\n\
+	var evt = document.createEvent(\"CustomEvent\");\n\
+	evt.initCustomEvent(\"twttr.media.types.comGitHubNorioNomura\",false,true);\n\
+	document.dispatchEvent(evt);\n\
+};\n\
+var instagramListener = function(evt){\n\
+	if (typeof(twttr.mediaType) != \"undefined\"){\n\
+		twttr.mediaType(\"twttr.media.types.instagram\").matcher(/\\b(?:http\\:\\/\\/)?instagr.am\\/(.*)$/g).icon(\"photo\").favicon(\"http://instagr.am/static/images/logoCamera.png\").url(\"http://instagr.am\").process(function(B,A){this.data.path=B;A()}).methods({html:function(A){requestInstagram(this.data.path);var B='<a id=\"{path}\" class=\"instagram\" href=\"http://instagr.am/{path}\" target=\"_blank\"></a>';A(twttr.supplant(B,this.data))}});\n\
+		document.removeEventListener(\"twttr.media.types.comGitHubNorioNomura\", instagramListener, true);\n\
+		delete dispatchTimeoutEvent;\n\
+		delete instagramListener;\n\
+	} else {setTimeout(dispatchTimeoutEvent,500);}\n\
+};\n\
+document.addEventListener(\"twttr.media.types.comGitHubNorioNomura\", instagramListener, true);\n\
+setTimeout(dispatchTimeoutEvent,500);\n\
+}";
 document.head.appendChild(script);})();
 
 function handleCustomEvent(evt) {
