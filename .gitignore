@@ -1,0 +1,6 @@
+.DS_Store
+*.esproj
+*.crx
+*.pem
+*.safariextz
+*.zip

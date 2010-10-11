@@ -1,0 +1,15 @@
+{
+    "name":"twttr.media.types.instagram",
+    "version":"1.0",
+    "description":"Show preview image from instagr.am on #NewTwitter.",
+    "background_page":"global.html",
+    "content_scripts":[
+        {
+            "matches":["https://twitter.com/*","https://twitter.com/*"],
+            "css":["twttr.media.types.instagram.user.css"],
+            "js":["twttr.media.types.instagram.user.js"],
+            "run_at":"document_end"
+        }
+    ],
+    "permissions":["http://instagr.am/*"]
+}
