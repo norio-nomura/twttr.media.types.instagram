@@ -2,6 +2,11 @@
     "name":"twttr.media.types.instagram",
     "version":"1.1",
     "description":"Show preview image from instagr.am on #NewTwitter.",
+    "icons":{
+        "16":"Icon-16.png",
+        "48":"Icon-48.png",
+        "128":"Icon-128.png"
+    },
     "background_page":"global.html",
     "content_scripts":[
         {
