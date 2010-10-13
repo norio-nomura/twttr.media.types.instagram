@@ -11,9 +11,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -25,17 +25,19 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>twttr.media.types.instagram.user.js</string>
+				<string>twttr.media.types.instagram.js</string>
 			</array>
 		</dict>
 		<key>Stylesheets</key>
 		<array>
-			<string>twttr.media.types.instagram.user.css</string>
+			<string>twttr.media.types.instagram.css</string>
 		</array>
 		<key>Whitelist</key>
 		<array>
-			<string>http://twitter.com/*</string>
-			<string>https://twitter.com/*</string>
+			<string>http://twitter.com/</string>
+			<string>https://twitter.com/</string>
+			<string>http://twitter.com/#*</string>
+			<string>https://twitter.com/#*</string>
 		</array>
 	</dict>
 	<key>Description</key>

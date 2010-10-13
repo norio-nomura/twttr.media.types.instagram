@@ -1,13 +1,18 @@
 {
     "name":"twttr.media.types.instagram",
-    "version":"1.0",
+    "version":"1.1",
     "description":"Show preview image from instagr.am on #NewTwitter.",
     "background_page":"global.html",
     "content_scripts":[
         {
-            "matches":["https://twitter.com/*","https://twitter.com/*"],
-            "css":["twttr.media.types.instagram.user.css"],
-            "js":["twttr.media.types.instagram.user.js"],
+            "matches":[
+                "http://twitter.com/",
+                "https://twitter.com/",
+                "http://twitter.com/#*",
+                "https://twitter.com/#*"
+            ],
+            "css":["twttr.media.types.instagram.css"],
+            "js":["twttr.media.types.instagram.js"],
             "run_at":"document_end"
         }
     ],

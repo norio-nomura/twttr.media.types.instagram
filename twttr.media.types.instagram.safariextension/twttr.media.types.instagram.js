@@ -1,14 +1,3 @@
-// ==UserScript==
-// @name		twttr.media.types.movapic
-// @namespace	http://norio-nomura.github.com/twttr.media.types.movapic/
-// @description	Show preview image from movapic.com on #NewTwitter.
-// @include		http://twitter.com/*
-// @include		https://twitter.com/*
-// @copyright	2010, Norio Nomura (http://norio-nomura.github.com/twttr.media.types.movapic/)
-// @license		MIT License
-// @version		1.1
-// ==/UserScript==
-
 /*
 
 The MIT License
