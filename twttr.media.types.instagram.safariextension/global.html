@@ -31,15 +31,26 @@ THE SOFTWARE.
 <script type="text/javascript">
 
 function getInstagram(path,response) {
-	var url = "http://instagr.am/"+path;
-	$.get(url, function(data) {
-		var element = $(data).find("#photo");
-		response({"id":path, "innerHTML":element.html()});
+	var url = 'http://instagr.am/'+path;
+	$.ajax({
+	    type:'GET',
+	    url:url,
+	    dataType:'html',
+	    global:false,
+	    contentType:'text/html',
+	    complete:function(xhr, textStatus) {
+            var element = $(xhr.responseText).find('#photo');
+            if (element) {
+                response({'id':path, 'innerHTML':element.html()});
+            } else {
+                response({'id':path, 'innerHTML':textStatus});
+            }
+	    }
 	});
 }
 
 function handleMessageEvent(messageEvent) {
-    if(messageEvent.name == "twttr.media.types.instagram") {
+    if(messageEvent.name == 'twttr.media.types.instagram') {
         getInstagram(messageEvent.message, function(message) {
             messageEvent.target.page.dispatchMessage(messageEvent.message, message);
         });
@@ -47,16 +58,16 @@ function handleMessageEvent(messageEvent) {
 }
 
 function handleConnect(port) {
-    if (port.name == "twttr.media.types.instagram") {
+    if (port.name == 'twttr.media.types.instagram') {
         port.onMessage.addListener(function(message) {
             getInstagram(message, function(message){port.postMessage(message);});
         });
     }
 } 
 
-if (typeof(safari) != "undefined") {
-    safari.application.addEventListener("message", handleMessageEvent, false);
-} else if (typeof(chrome) != "undefined") {
+if (typeof(safari) != 'undefined') {
+    safari.application.addEventListener('message', handleMessageEvent, false);
+} else if (typeof(chrome) != 'undefined') {
     chrome.extension.onConnect.addListener(handleConnect);
 }
 

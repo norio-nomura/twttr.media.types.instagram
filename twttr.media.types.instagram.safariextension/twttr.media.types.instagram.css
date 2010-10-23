@@ -22,7 +22,8 @@
     
 .instagram .photo-info {
 	display: block;
-    padding: 1em 0em ! important;
+    height:  50px;
+    padding: 0em ! important;
     }
 .instagram .photo-info .profile-photo {
     background: #000 ! important;
