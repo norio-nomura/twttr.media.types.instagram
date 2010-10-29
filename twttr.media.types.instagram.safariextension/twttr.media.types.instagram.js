@@ -27,15 +27,15 @@ THE SOFTWARE.
 if (window.top === window) {
     
     function getObjectFromGlobal(message) {
-    	var a = function(countDown) {
-    		var div = document.getElementById(message.id);
-    		if (div) {
-    			div.innerHTML = message.innerHTML;
-    			delete a;
-    		} else if (countDown == 0) {
-    			delete a;
-    		} else setTimeout(a,100,--countDown);
-    	};a(10);
+        var a = function(countDown) {
+            var div = document.getElementById(message.id);
+            if (div) {
+                div.innerHTML = message.innerHTML;
+                delete a;
+            } else if (countDown == 0) {
+                delete a;
+            } else setTimeout(a,100,--countDown);
+        };a(10);
     }
     
     var port;   // This is used by Chrome.
@@ -56,36 +56,41 @@ if (window.top === window) {
             };
     }
     
+    function handleCustomEvent(evt) {
+        sendObjectToGlobal(evt.detail);
+    }
+    document.addEventListener('twttr.media.types.instagram', handleCustomEvent, true);
+
     (function(){var script = document.createElement('script');
     script.type = 'text/javascript';
-    script.text = "{\n\
-    function requestInstagram(path) {\n\
-    	var evt = document.createEvent(\"CustomEvent\");\n\
-    	evt.initCustomEvent(\"twttr.media.types.instagram\",false,false,path);\n\
-    	document.dispatchEvent(evt);\n\
-    }\n\
+    script.text = "(function(){\n\
     var dispatchTimeoutEvent = function() {\n\
-    	var evt = document.createEvent(\"CustomEvent\");\n\
-    	evt.initCustomEvent(\"twttr.media.types.comGitHubNorioNomura\",false,true);\n\
-    	document.dispatchEvent(evt);\n\
+        var evt = document.createEvent(\"CustomEvent\");\n\
+        evt.initCustomEvent(\"twttr.media.types.comGitHubNorioNomura\", false, true);\n\
+        document.dispatchEvent(evt);\n\
     };\n\
     var instagramListener = function(evt){\n\
-    	if (typeof(twttr.mediaType) != \"undefined\"){\n\
-    		twttr.mediaType(\"twttr.media.types.instagram\").matcher(/\\b(?:http\\:\\/\\/)?instagr.am\\/(.*)$/g).icon(\"photo\").favicon(\"http://instagr.am/static/images/logoCamera.png\").url(\"http://instagr.am\").process(function(B,A){this.data.path=B;A()}).methods({html:function(A){requestInstagram(this.data.path);var B='<a id=\"{path}\" class=\"instagram\" href=\"http://instagr.am/{path}\" target=\"_blank\"></a>';A(twttr.supplant(B,this.data))}});\n\
-    		document.removeEventListener(\"twttr.media.types.comGitHubNorioNomura\", instagramListener, true);\n\
-    		delete dispatchTimeoutEvent;\n\
-    		delete instagramListener;\n\
-    	} else {setTimeout(dispatchTimeoutEvent,500);}\n\
+        if (typeof(twttr.mediaType) != \"undefined\"){\n\
+            if (typeof(twttr.media.types.instagram) == \"undefined\"){\n\
+                twttr.mediaType(\"twttr.media.types.instagram\").matcher(/\\b(?:http\\:\\/\\/)?instagr.am\\/(.*)$/g).icon(\"photo\").favicon(\"http://instagr.am/static/images/logoCamera.png\").url(\"http://instagr.am\").statics({request:function(path){\n\
+                    var evt = document.createEvent(\"CustomEvent\");\n\
+                    evt.initCustomEvent(\"twttr.media.types.instagram\", false, false, path);\n\
+                    document.dispatchEvent(evt);\n\
+                }}).process(function(B,A){\n\
+                    this.data.path=B;A();\n\
+                }).methods({html:function(A){\n\
+                    twttr.media.types.instagram.request(this.data.path);\n\
+                    var B='<a id=\"{path}\" class=\"instagram\" href=\"http://instagr.am/{path}\" target=\"_blank\"></a>';\n\
+                    A(twttr.supplant(B,this.data));\n\
+                }});\n\
+            }\n\
+            document.removeEventListener(\"twttr.media.types.comGitHubNorioNomura\", instagramListener, true);\n\
+            delete dispatchTimeoutEvent;\n\
+            delete instagramListener;\n\
+        } else {setTimeout(dispatchTimeoutEvent, 500);}\n\
     };\n\
     document.addEventListener(\"twttr.media.types.comGitHubNorioNomura\", instagramListener, true);\n\
-    setTimeout(dispatchTimeoutEvent,500);\n\
-    }";
+    setTimeout(dispatchTimeoutEvent, 500);\n\
+    })();";
     document.head.appendChild(script);})();
-    
-    function handleCustomEvent(evt) {
-    	sendObjectToGlobal(evt.detail);
-    }
-    
-    document.addEventListener('twttr.media.types.instagram',handleCustomEvent,true);
-
 }
