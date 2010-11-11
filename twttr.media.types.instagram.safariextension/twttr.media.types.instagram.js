@@ -72,17 +72,26 @@ if (window.top === window) {
     var instagramListener = function(evt){\n\
         if (typeof(twttr.mediaType) != \"undefined\"){\n\
             if (typeof(twttr.media.types.instagram) == \"undefined\"){\n\
-                twttr.mediaType(\"twttr.media.types.instagram\").matcher(/\\b(?:http\\:\\/\\/)?instagr.am\\/(.*)$/g).icon(\"photo\").favicon(\"http://instagr.am/static/images/logoCamera.png\").url(\"http://instagr.am\").statics({request:function(path){\n\
-                    var evt = document.createEvent(\"CustomEvent\");\n\
-                    evt.initCustomEvent(\"twttr.media.types.instagram\", false, false, path);\n\
-                    document.dispatchEvent(evt);\n\
-                }}).process(function(B,A){\n\
-                    this.data.path=B;A();\n\
-                }).methods({html:function(A){\n\
-                    twttr.media.types.instagram.request(this.data.path);\n\
-                    var B='<a id=\"{path}\" class=\"instagram\" href=\"http://instagr.am/{path}\" target=\"_blank\"></a>';\n\
-                    A(twttr.supplant(B,this.data));\n\
-                }});\n\
+                twttr.mediaType(\"twttr.media.types.instagram\", {\n\
+                    title : \"instagram\" , icon : \"photo\", favicon : \"http://instagr.am/static/images/logoCamera.png\", domain : \"http://instagr.am\", matchers : { \n\
+                        standardUrl: /^#{optional_protocol}?instagr.am\\/(.*)$/g\n\
+                    },\n\
+                    process : function(A){\n\
+                        this.data.path = this.slug;\n\
+                        A()\n\
+                    },\n\
+                    render : function(B){\n\
+                        this.request(this.data.path);\n\
+                        var A = '<a id=\"{path}\" class=\"instagram\" href=\"http://instagr.am/{path}\" target=\"_blank\"></a>';\n\
+                        $(B).append(twttr.supplant(A, this.data))\n\
+                    }\n\
+                }).methods({\n\
+                    request : function(path){\n\
+                        var evt = document.createEvent(\"CustomEvent\");\n\
+                        evt.initCustomEvent(\"twttr.media.types.instagram\", false, false, path);\n\
+                        document.dispatchEvent(evt);\n\
+                    }\n\
+                });\n\
             }\n\
             document.removeEventListener(\"twttr.media.types.comGitHubNorioNomura\", instagramListener, true);\n\
             delete dispatchTimeoutEvent;\n\
