@@ -11,9 +11,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>CFBundleVersion</key>
-	<string>1.5</string>
+	<string>1.6</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Global Page</key>
@@ -25,13 +25,14 @@
 		<dict>
 			<key>End</key>
 			<array>
-				<string>twttr.media.types.instagram.js</string>
+				<string>injectHTMLLinkElement.js</string>
+			</array>
+			<key>Start</key>
+			<array>
+				<string>injectHTMLScriptElement.js</string>
+				<string>twttr.media.types.instagram.listener.js</string>
 			</array>
 		</dict>
-		<key>Stylesheets</key>
-		<array>
-			<string>twttr.media.types.instagram.css</string>
-		</array>
 		<key>Whitelist</key>
 		<array>
 			<string>http://twitter.com/</string>
@@ -51,7 +52,6 @@
 			<key>Allowed Domains</key>
 			<array>
 				<string>twitter.com</string>
-				<string>instagr.am</string>
 			</array>
 			<key>Include Secure Pages</key>
 			<true/>

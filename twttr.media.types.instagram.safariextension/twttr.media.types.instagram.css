@@ -1,54 +1,54 @@
-.instagram {
-    float: left ! important;
+.tweet-media .instagram {
+    float: left;
     margin: 0;
-    padding: 0px ! important;
+    padding: 0px;
     text-decoration: none;
     }
 
-.instagram .frame {
-	background: #efead6 url(http://instagr.am/static/images/photoBackground.png) ! important;
-    border: 1px solid #dedcd3 ! important;
-    padding: 15px ! important;
-    -webkit-border-radius: 1.5em ! important;
-    -moz-border-radius: 1.5em ! important;
-    -webkit-box-shadow: 0em 0em 15px rgba(0,0,0,.5) ! important;
+.tweet-media .instagram .frame {
+	background: #efead6 url(http://instagr.am/static/images/photoBackground.png);
+    border: 1px solid #dedcd3;
+    padding: 15px;
+    -webkit-border-radius: 1.5em;
+    -moz-border-radius: 1.5em;
+    -webkit-box-shadow: 0em 0em 15px rgba(0,0,0,.5);
     }
-.instagram .photo {
+.tweet-media .instagram .photo {
 //    height: 409px;
 //    width: 409px;
-    background: #000 ! important;
-    padding: 0px ! important;
+    background: #000;
+    padding: 0px;
     }
     
-.instagram .photo-info {
+.tweet-media .instagram .photo-info {
 	display: block;
     height:  50px;
-    padding: 0em ! important;
+    padding: 0em;
     }
-.instagram .photo-info .profile-photo {
-    background: #000 ! important;
-    float: left ! important;
-    height:  50px ! important;
-    margin-right: 1em ! important;
-    padding: 0px ! important;
-    width: 50px ! important;
+.tweet-media .instagram .photo-info .profile-photo {
+    background: #000;
+    float: left;
+    height:  50px;
+    margin-right: 1em;
+    padding: 0px;
+    width: 50px;
     }
-.instagram .profile-info {
-    color: #98887c ! important;
-    float: left ! important;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ! important;
+.tweet-media .instagram .profile-info {
+    color: #98887c;
+    float: left;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.4em;
-    margin: 0px ! important;
-    padding: 0px ! important;
-    text-shadow: 0px 1px rgba(255,255,255,1) ! important;
-    vertical-align: baseline ! important;
+    margin: 0px;
+    padding: 0px;
+    text-shadow: 0px 1px rgba(255,255,255,1);
+    vertical-align: baseline;
     }
-.instagram .profile-info h1 {
-    color: #4b433d ! important;
-    font-size: 1.5em ! important;
-    font-weight: bold ! important;
-    line-height: 1em ! important;
+.tweet-media .instagram .profile-info h1 {
+    color: #4b433d;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1em;
     }
-.instagram .profile-info .number-statistic{
-    font-weight: bold ! important;
+.tweet-media .instagram .profile-info .number-statistic{
+    font-weight: bold;
     }

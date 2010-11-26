@@ -1,6 +1,6 @@
 {
     "name":"twttr.media.types.instagram",
-    "version":"1.5",
+    "version":"1.6",
     "description":"Show preview image from instagr.am on #NewTwitter.",
     "icons":{
         "16":"Icon-16.png",
@@ -16,10 +16,24 @@
                 "http://twitter.com/#*",
                 "https://twitter.com/#*"
             ],
-            "css":["twttr.media.types.instagram.css"],
-            "js":["twttr.media.types.instagram.js"],
+            "js":[
+                "injectHTMLScriptElement.js",
+                "twttr.media.types.instagram.listener.js"
+            ],
+            "run_at":"document_start"
+        },
+        {
+            "matches":[
+                "http://twitter.com/",
+                "https://twitter.com/",
+                "http://twitter.com/#*",
+                "https://twitter.com/#*"
+            ],
+            "js":["injectHTMLLinkElement.js"],
             "run_at":"document_end"
         }
     ],
-    "permissions":["http://instagr.am/*"]
+    "permissions":[
+        "http://instagr.am/*"
+    ]
 }
