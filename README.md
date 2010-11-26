@@ -1,0 +1,1 @@
+This project has been merged into [twttr.mediaTypes](http://norio-nomura.github.com/twttr.mediaTypes/).
